@@ -38,6 +38,16 @@
                     <a href="#" class="inline-block mt-4 text-blue-600 font-medium hover:underline">Lihat Tugas →</a>
                 </div>
 
+                <div class="mb-4">
+    <h3 class="font-bold text-lg">Kelas Saya:</h3>
+    <ul class="list-disc pl-5">
+        @foreach (auth()->user()->classes as $class)
+            <li>{{ $class->name }}</li>
+        @endforeach
+    </ul>
+</div>
+
+
                 <!-- Forum -->
                 <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
                     <h4 class="text-lg font-semibold text-gray-700 mb-2">💬 Forum Diskusi</h4>
