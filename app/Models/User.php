@@ -45,4 +45,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+    public function classes()
+{
+    return $this->belongsToMany(ClassModel::class, 'class_user', 'user_id', 'class_id');
+}
+
+
 }

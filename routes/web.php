@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClassJoinController;
+use App\Http\Controllers\ClassContentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,6 +17,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/join-class', [ClassJoinController::class, 'showForm'])->name('join.class.form');
+    Route::post('/join-class', [ClassJoinController::class, 'join'])->name('join.class');
+
+    Route::get('/kelas/{id}', [ClassContentController::class, 'show'])->name('siswa.class-content');
 });
 
 require __DIR__.'/auth.php';
