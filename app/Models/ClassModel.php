@@ -13,5 +13,11 @@ class ClassModel extends Model
     {
         return $this->belongsToMany(User::class, 'class_user');
     }
+
+    public function materials()
+    {
+        return $this->hasMany(Material::class, 'class_id');
+    }
+
 }
 
