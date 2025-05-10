@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('class_id')->constrained('classes')->onDelete('cascade');
             $table->string('title');
-            $table->text('content'); // atau gunakan file_path jika upload file
+            $table->text('content');
             $table->timestamps();
         });
         

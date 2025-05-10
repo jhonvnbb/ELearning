@@ -14,6 +14,19 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    public static function redirectTo()
+    {
+        $user = auth()->user();
+
+        if ($user->role === 'admin') {
+            return '/admin/dashboard';
+        } elseif ($user->role === 'guru') {
+            return '/guru/dashboard';
+        } else {
+            return '/dashboard';
+        }
+    }
+
     /**
      * Bootstrap any application services.
      */

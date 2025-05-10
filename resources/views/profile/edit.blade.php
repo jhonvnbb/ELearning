@@ -46,52 +46,51 @@
                 </div>
 
                 {{-- Sidebar Accessories --}}
-<div class="space-y-6">
+                <div class="space-y-6">
 
-    {{-- Info Akun --}}
-    <div class="bg-white rounded-lg shadow p-4">
-        <h4 class="text-xl font-semibold text-gray-800 mb-3">👨‍🎓 Status Akun</h4>
-        <p class="text-sm text-gray-600 mb-1">
-            <span class="font-medium text-gray-800">Nama:</span>
-            {{ Auth::user()->name ?? '-' }}
-        </p>
-        <div class="text-sm text-gray-600">
-            <span class="font-medium text-gray-800">Kelas:</span>
-            <ul class="mt-1 ml-3 list-disc list-inside space-y-1">
-                @foreach (auth()->user()->classes as $class)
-                    <li>
-                        <a href="{{ route('siswa.class-content', $class->id) }}"
-                           class="text-blue-600 hover:underline">
-                            {{ $class->name }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
+                    {{-- Info Akun --}}
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">👨‍🎓 Status Akun</h4>
+                        <p class="text-sm text-gray-600 mb-1">
+                            <span class="font-medium text-gray-800">Nama:</span>
+                            {{ Auth::user()->name ?? '-' }}
+                        </p>
+                        <div class="text-sm text-gray-600">
+                            <span class="font-medium text-gray-800">Kelas:</span>
+                            <ul class="mt-1 ml-3 list-disc list-inside space-y-1">
+                                @foreach (auth()->user()->classes as $class)
+                                    <li>
+                                        <a href="{{ route('siswa.class-content', $class->id) }}"
+                                        class="text-blue-600 hover:underline">
+                                            {{ $class->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
 
-    {{-- Info Sekolah --}}
-    <div class="bg-white rounded-lg shadow p-4">
-        <h4 class="text-xl font-semibold text-gray-800 mb-3">🏫 Info Sekolah</h4>
-        <ul class="text-sm text-gray-700 list-disc ml-5 space-y-1">
-            <li><span class="font-medium">Nama Sekolah:</span> SMA Negeri 1 Lahat</li>
-            <li><span class="font-medium">NPSN:</span> 10700195</li>
-            <li><span class="font-medium">Akreditasi:</span> A (Unggul)</li>
-        </ul>
-    </div>
+                    {{-- Info Sekolah --}}
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">🏫 Info Sekolah</h4>
+                        <ul class="text-sm text-gray-700 list-disc ml-5 space-y-1">
+                            <li><span class="font-medium">Nama Sekolah:</span> SMA Negeri 1 Lahat</li>
+                            <li><span class="font-medium">NPSN:</span> 10700195</li>
+                            <li><span class="font-medium">Akreditasi:</span> A (Unggul)</li>
+                        </ul>
+                    </div>
 
-    {{-- Panduan Singkat --}}
-    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
-        <h4 class="text-base font-semibold text-blue-700 mb-1">📘 Panduan</h4>
-        <ul class="text-sm text-blue-800 list-disc ml-5 space-y-1">
-            <li>Gunakan menu di atas untuk mengedit profil.</li>
-            <li>Pastikan data sesuai dengan dokumen resmi.</li>
-            <li>Laporkan jika ada kesalahan data ke BK.</li>
-        </ul>
-    </div>
+                    {{-- Panduan Singkat --}}
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                        <h4 class="text-base font-semibold text-blue-700 mb-1">📘 Panduan</h4>
+                        <ul class="text-sm text-blue-800 list-disc ml-5 space-y-1">
+                            <li>Gunakan menu di atas untuk mengedit profil.</li>
+                            <li>Pastikan data sesuai dengan dokumen resmi.</li>
+                            <li>Laporkan jika ada kesalahan data ke BK.</li>
+                        </ul>
+                    </div>
 
-</div>
-
+                </div>
 
             </div>
         </div>
