@@ -27,7 +27,7 @@ public function join(Request $request)
         return back()->withErrors(['token' => 'Token salah.']);
     }
 
-    $user = Auth::user(); // pastikan pakai use Auth;
+    $user = Auth::user();
 
     if (!$user->classes->contains($class->id)) {
         $user->classes()->attach($class->id);

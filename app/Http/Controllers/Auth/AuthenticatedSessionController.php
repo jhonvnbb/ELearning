@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Providers\AppServiceProvider;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -25,11 +26,11 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+    
+        return redirect()->intended(AppServiceProvider::redirectTo());
     }
+
 
     /**
      * Destroy an authenticated session.
