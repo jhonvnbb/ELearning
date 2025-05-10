@@ -3,6 +3,12 @@
         <h2 class="text-3xl font-bold text-gray-800 leading-tight flex items-center gap-2">
             📚 Kelas: {{ $class->name }}
         </h2>
+        @if($guruList->count())
+            <p class="text-sm text-gray-600 mt-1">
+                👨‍🏫 Guru Pengampu:
+                {{ $guruList->pluck('name')->join(', ') }}
+            </p>
+        @endif
     </x-slot>
 
     <div class="py-10 bg-gradient-to-b from-gray-50 to-white min-h-screen">
