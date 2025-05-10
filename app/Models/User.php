@@ -46,9 +46,22 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
     public function classes()
-{
-    return $this->belongsToMany(ClassModel::class, 'class_user', 'user_id', 'class_id');
-}
+    {
+        return $this->belongsToMany(ClassModel::class, 'class_user', 'user_id', 'class_id');
+    }
+
+    public function kelasSebagaiSiswa()
+    {
+        return $this->belongsToMany(ClassModel::class, 'class_user');
+    }
+
+    public function kelasDiajar()
+    {
+        return $this->belongsToMany(CLassModel::class, 'class_guru', 'user_id', 'class_id');
+    }
+
+
+
 
 
 }

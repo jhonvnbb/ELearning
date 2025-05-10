@@ -33,7 +33,7 @@ public function join(Request $request)
         $user->classes()->attach($class->id);
     }
 
-    return redirect()->route('dashboard')->with('success', 'Berhasil bergabung dengan kelas!');
+    return redirect()->route('siswa.dashboard')->with('success', 'Berhasil bergabung dengan kelas!');
 }
 
 

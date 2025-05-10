@@ -10,13 +10,15 @@ class ClassContentController extends Controller
 {
     public function show($id)
     {
-        $class = ClassModel::with('materials')->findOrFail($id);
+        $class = ClassModel::with('materials', 'guru')->findOrFail($id);
 
-        // Pastikan user sudah tergabung dengan kelas tersebut
         if (!Auth::user()->classes->contains($id)) {
             abort(403, 'Anda belum tergabung dengan kelas ini.');
         }
 
-        return view('siswa.class-content', compact('class'));
+        return view('siswa.class-content', [
+            'class' => $class,
+            'guruList' => $class->guru,
+        ]);
     }
 }
