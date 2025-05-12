@@ -7,6 +7,8 @@ use App\Http\Controllers\ClassJoinController;
 use App\Http\Controllers\ClassContentController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\QuizController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,15 +41,30 @@ Route::middleware('auth', 'role:siswa')->group(function () {
     Route::post('/join-class', [ClassJoinController::class, 'join'])->name('join.class');
 
     Route::get('/kelas/{id}', [ClassContentController::class, 'show'])->name('siswa.class-content');
+
+    Route::get('/siswa/quiz-show/{id}', [QuizController::class, 'show'])->name('siswa.quiz.show');
+    Route::post('/siswa/quiz-submit/{id}', [QuizController::class, 'submit'])->name('siswa.quiz.submit');
+
 });
 
 Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('/guru/dashboard', [GuruController::class, 'dashboard'])->name('guru.dashboard');
 
     Route::get('/kelas/{id}/materi', [GuruController::class, 'classContent'])->name('guru.class-content');
+    
+    // Materi
+    Route::resource('materi', MaterialController::class)->only(['store']);
+    Route::get('/materi/{id}/edit', [MaterialController::class, 'edit'])->name('materi.edit');
+    Route::put('/materi/{id}', [MaterialController::class, 'update'])->name('materi.update');
+    Route::delete('/materi/{id}', [MaterialController::class, 'destroy'])->name('materi.destroy');
+    
+    // Kuis
+    Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
+    Route::resource('quizzes', QuizController::class);
+    Route::get('/quizzes/{id}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
+    Route::put('/quizzes/{id}', [QuizController::class, 'update'])->name('quizzes.update');
+    Route::delete('/quizzes/{id}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
 
-    // Route::get('/kelas/{class_id}/materi/create', [MaterialController::class, 'create'])->name('guru.materials.create');
-    // Route::get('/kelas/{class_id}/materi/{id}/edit', [MaterialController::class, 'edit'])->name('guru.materials.edit');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
