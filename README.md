@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">📘 PELiS</h1>
+<h1 align="center mb-4">📘 PELiS</h1>
 <p align="center">
   Sistem Elearning yang dikembangkan menggunakan Laravel-12
 </p>
@@ -16,11 +16,6 @@
   <a href="https://tailwindcss.com" target="_blank">
     <img src="https://tailwindcss.com/favicons/apple-touch-icon.png" alt="Tailwind CSS" width="60" style="margin: 0 15px;">
   </a>
-  <a href="https://sweetalert2.github.io/" target="_blank">
-    <img src="https://sweetalert2.github.io/images/SweetAlert2.png" alt="SweetAlert2" width="60" style="margin: 0 15px;">
-  </a>
-  <a href="https://michalsnik.github.io/aos/" target="_blank">
-    <img src="https://raw.githubusercontent.com/michalsnik/aos/master/logo/logo-black.svg" alt="AOS" width="60" style="margin: 0 15px;">
   </a>
 </p>
 
