@@ -14,11 +14,14 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
         <!-- AOS CSS -->
         <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+        <!-- TOASTIFY -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -45,5 +48,50 @@
                 AOS.init({ duration: 800, once: true });
             });
         </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                @if (session('success'))
+                    Toastify({
+                        text: "✅ {{ session('success') }}",
+                        duration: 4000,
+                        gravity: "top",
+                        position: "left",
+                        style: {
+                            background: "linear-gradient(to right, #16a34a, #22c55e)",
+                            borderRadius: "10px",
+                            boxShadow: "0 4px 14px rgba(0, 0, 0, 0.1)",
+                            padding: "14px 18px",
+                            fontSize: "14px",
+                            color: "#fff"
+                        },
+                        close: false,
+                        stopOnFocus: true,
+                    }).showToast();
+                @endif
+
+                @if (session('error'))
+                    Toastify({
+                        text: "❌{{ session('error') }}",
+                        duration: 4000,
+                        gravity: "top",
+                        position: "left",
+                        style: {
+                            background: "linear-gradient(to right, #dc2626, #ef4444)",
+                            borderRadius: "10px",
+                            boxShadow: "0 4px 14px rgba(0, 0, 0, 0.1)",
+                            padding: "14px 18px",
+                            fontSize: "14px",
+                            color: "#fff"
+                        },
+                        close: false,
+                        stopOnFocus: true,
+                    }).showToast();
+                @endif
+            });
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>

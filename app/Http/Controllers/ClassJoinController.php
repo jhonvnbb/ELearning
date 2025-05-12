@@ -9,32 +9,31 @@ use App\Models\User;
 class ClassJoinController extends Controller
 {
     public function showForm()
-{
-    $classes = ClassModel::all();
-    return view('siswa.join-class', compact('classes'));
-}
-
-public function join(Request $request)
-{
-    $request->validate([
-        'class_id' => 'required|exists:classes,id',
-        'token' => 'required'
-    ]);
-
-    $class = ClassModel::find($request->class_id);
-
-    if ($class->token !== $request->token) {
-        return back()->withErrors(['token' => 'Token salah.']);
+    {
+        $classes = ClassModel::all();
+        return view('siswa.join-class', compact('classes'));
     }
 
-    $user = Auth::user();
+    public function join(Request $request)
+    {
+        $request->validate([
+            'class_id' => 'required|exists:classes,id',
+            'token' => 'required'
+        ]);
 
-    if (!$user->classes->contains($class->id)) {
-        $user->classes()->attach($class->id);
+        $class = ClassModel::find($request->class_id);
+
+        if ($class->token !== $request->token) {
+            return back()->with('error', 'Token salah.');
+        }
+
+        $user = Auth::user();
+
+        if (!$user->classes->contains($class->id)) {
+            $user->classes()->attach($class->id);
+        }
+
+        return redirect()->route('siswa.dashboard')->with('success', 'Berhasil bergabung dengan kelas!');
     }
-
-    return redirect()->route('siswa.dashboard')->with('success', 'Berhasil bergabung dengan kelas!');
-}
-
 
 }

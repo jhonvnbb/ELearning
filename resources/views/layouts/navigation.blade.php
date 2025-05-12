@@ -34,9 +34,9 @@
                             Profile
                         </x-dropdown-link>
 
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
                             @csrf
-                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <x-dropdown-link href="#" class="logout-button">
                                 Keluar
                             </x-dropdown-link>
                         </form>
@@ -81,12 +81,39 @@
                 </div>
             </div>
 
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" id="logout-form">
                 @csrf
-                <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                <x-responsive-nav-link href="#" class="logout-button">
                     Keluar
                 </x-responsive-nav-link>
             </form>
         </div>
     </div>
 </nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logoutButtons = document.querySelectorAll('.logout-button');
+
+        logoutButtons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Yakin ingin keluar?',
+                    text: "Kamu akan logout dari aplikasi.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#6366f1',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, keluar',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('logout-form').submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
