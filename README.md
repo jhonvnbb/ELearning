@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center mb-4">📘 PELiS</h1>
+<h1 align="center">📘 PELiS</h1>
 <p align="center">
   Sistem Elearning yang dikembangkan menggunakan Laravel-12
 </p>
