@@ -12,7 +12,7 @@
             </div>
 
             @if (session('status') == 'verification-link-sent')
-                <div class="mb-4 p-3 bg-green-100 text-green-800 text-sm rounded-md">
+                <div class="flex justify-center items-center mb-4 p-3 bg-green-100 text-green-800 text-sm rounded-md">
                     Link verifikasi baru telah dikirim ke email kamu!
                 </div>
             @endif
@@ -38,4 +38,35 @@
             </div>
         </div>
     </div>
+
+    {{-- Toast Notification --}}
+    <div
+        x-data="{ show: @json(session('status') || $errors->any()), message: '{{ session('status') ?? $errors->first() }}' }"
+        x-show="show"
+        x-init="setTimeout(() => show = false, 4000)"
+        class="fixed top-6 right-6 z-50 bg-white border border-green-500 text-green-700 px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3 transition-all duration-300"
+        x-transition:enter="transform ease-out duration-300"
+        x-transition:enter-start="translate-y-[-20px] opacity-0"
+        x-transition:enter-end="translate-y-0 opacity-100"
+        x-transition:leave="transform ease-in duration-300"
+        x-transition:leave-start="translate-y-0 opacity-100"
+        x-transition:leave-end="translate-y-[-20px] opacity-0"
+    >
+        <i class="fas fa-check-circle text-green-600"></i>
+        <span x-text="message"></span>
+    </div>
+
+    {{-- Toast for login error --}}
+    @if ($errors->any())
+        <div
+            x-data="{ show: true }"
+            x-show="show"
+            x-init="setTimeout(() => show = false, 4000)"
+            class="fixed top-6 right-6 z-50 bg-white border border-red-500 text-red-700 px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3 transition-all duration-300"
+            x-transition
+        >
+            <i class="fas fa-exclamation-circle text-red-600"></i>
+            <span>{{ $errors->first() }}</span>
+        </div>
+    @endif
 </x-guest-layout>

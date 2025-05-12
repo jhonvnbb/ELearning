@@ -37,28 +37,28 @@ class MaterialController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $materi = Materi::findOrFail($id);
+    {
+        $materi = Materi::findOrFail($id);
 
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'content' => 'nullable|string',
-        'file' => 'nullable|mimes:pdf|max:2048'
-    ]);
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'nullable|string',
+            'file' => 'nullable|mimes:pdf|max:2048'
+        ]);
 
-    if ($request->hasFile('file')) {
-        $path = $request->file('file')->store('materi', 'public');
-        $materi->file_path = $path;
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->store('materi', 'public');
+            $materi->file_path = $path;
+        }
+
+        $materi->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('guru.class-content', ['id' => $materi->class_id])
+                        ->with('success', 'Materi berhasil diperbarui');
     }
-
-    $materi->update([
-        'title' => $request->title,
-        'content' => $request->content,
-    ]);
-
-    return redirect()->route('guru.class-content', ['id' => $materi->class_id])
-                     ->with('success', 'Materi berhasil diperbarui');
-}
 
 
     public function destroy($id)
